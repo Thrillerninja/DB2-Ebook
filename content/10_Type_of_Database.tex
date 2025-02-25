@@ -2,110 +2,49 @@
 
 Couchbase is a distributed NoSQL database that combines document database and key-value store capabilities. Unlike traditional single-model NoSQL solutions, Couchbase offers a hybrid approach that makes it versatile for different use cases.
 
-\section{Understanding Couchbase in the NoSQL Landscape}
+% \section{Understanding Couchbase in the NoSQL Landscape}
 
-NoSQL databases emerged to address limitations of relational systems when dealing with large data volumes and varied structures. The main types include:
+% NoSQL databases emerged to address limitations of relational systems when dealing with large data volumes and varied structures. The main types include:
 
-\begin{itemize}
-  \item Document databases: Store semi-structured data as documents (usually JSON)
-  \item Key-value stores: Simple repositories storing values indexed by keys
-  \item Column-family stores: Store data in column families instead of tables
-  \item Graph databases: Specialize in managing highly connected data
-\end{itemize}
+% \begin{itemize}
+%   \item Document databases: Store semi-structured data as documents (usually JSON)
+%   \item Key-value stores: Simple repositories storing values indexed by keys
+%   \item Column-family stores: Store data in column families instead of tables
+%   \item Graph databases: Specialize in managing highly connected data
+% \end{itemize}
 
-Couchbase is primarily a distributed document database that also offers key-value capabilities, making it a multi-model solution.
+% Couchbase is primarily a distributed document database that also offers key-value capabilities, making it a multi-model solution.
 
 \section{Key Characteristics and Features}
 
-Couchbase offers a robust set of features that position it uniquely in the database market:
+Couchbase distinguishes itself through several core capabilities that combine to create a versatile database platform:
 
-\subsection{Document Model}
-Couchbase stores data as JSON documents, which offer several advantages:
+\subsection{Data Model and Storage}
 \begin{itemize}
-  \item Schema flexibility with no enforced document structure
-  \item Support for nested attributes of arbitrary depth
-  \item Ability to store arrays and embedded objects
-  \item Document sizes up to 20MB (default limit)
-  \item Metadata stored alongside documents (cas values, expiration)
-  \item Document-level atomicity for write operations
+  \item \textbf{JSON Document Storage}: Schema-flexible documents supporting nested attributes, arrays, and objects (up to 20MB per document)
+  \item \textbf{Key-Value Operations}: Sub-millisecond CRUD operations with direct key access, optimistic concurrency (CAS), and TTL expiration
+  \item \textbf{Memory-First Architecture}: Built-in caching layer with configurable memory quotas and background disk persistence
 \end{itemize}
 
-\subsection{Key-Value Operations}
-At its core, Couchbase provides high-performance key-value capabilities:
+\subsection{Query and Indexing}
 \begin{itemize}
-  \item Sub-millisecond read/write operations
-  \item Direct document access via unique keys
-  \item Support for basic CRUD operations (create, read, update, delete)
-  \item Optimistic concurrency control with CAS (Compare-And-Swap) values
-  \item Document expiration with TTL (Time-To-Live) settings
-  \item Atomic counter operations
+  \item \textbf{N1QL Query Language}: SQL-like syntax for JSON with support for JOINs, nested attributes, arrays, aggregations, and subqueries
+  \item \textbf{Comprehensive Indexing}: Primary, secondary, composite, partial, and array indexes to optimize query performance
 \end{itemize}
 
-\subsection{Memory-First Architecture}
-Couchbase's performance stems from its memory-centric design:
+\subsection{Distribution and Scalability}
 \begin{itemize}
-  \item Built-in caching layer derived from Memcached technology
-  \item Configurable memory quotas per service
-  \item Managed cache eviction based on ejection policies
-  \item Background persistence to disk
-  \item Working set management for optimizing memory use
-  \item Direct memory access capabilities
+  \item \textbf{Distributed Architecture}: Automatic sharding, configurable replication, auto-failover, and online rebalancing
+  \item \textbf{Multi-Service Design}: Independent scaling of data, query, index, search, analytics, and eventing services
+  \item \textbf{Cross-Datacenter Replication}: Built-in XDCR for geographic distribution
 \end{itemize}
 
-\subsection{N1QL Query Language}
-N1QL (pronounced "nickel") extends SQL for JSON data:
+\subsection{Security and Enterprise Features}
 \begin{itemize}
-  \item SQL-like syntax for querying JSON documents
-  \item Support for JOINs between multiple document collections
-  \item Filtering on nested attributes and array elements
-  \item Aggregation functions (COUNT, SUM, AVG, etc.)
-  \item Subqueries and correlated subqueries
-  \item Window functions for advanced analytics
+  \item \textbf{Access Control}: Role-Based Access Control (RBAC), LDAP integration, and operation auditing
+  \item \textbf{Encryption}: TLS for data in transit and field-level encryption for sensitive data
 \end{itemize}
 
-\subsection{Indexing Capabilities}
-Couchbase provides several indexing options to optimize queries:
-\begin{itemize}
-  \item Primary indexes for collection scans
-  \item Secondary indexes for specific fields
-  \item Composite indexes for multi-field queries
-  \item Partial indexes with WHERE clauses
-  \item Array indexes for querying array elements
-  \item Adaptive indexes that learn from query patterns
-\end{itemize}
-
-\subsection{Clustering and Distribution}
-Couchbase is built from the ground up as a distributed system:
-\begin{itemize}
-  \item Automatic sharding of data across cluster nodes
-  \item Data replication with configurable replica counts
-  \item Rack/zone awareness for resilience
-  \item Auto-failover for node failures
-  \item Online rebalancing without downtime
-  \item Cross-datacenter replication (XDCR)
-\end{itemize}
-
-\subsection{Services Architecture}
-Couchbase uses a multi-service architecture allowing independent scaling:
-\begin{itemize}
-  \item Data Service: Stores and serves documents
-  \item Query Service: Processes N1QL queries
-  \item Index Service: Manages indexes
-  \item Search Service: Provides full-text search capabilities
-  \item Analytics Service: Handles analytical queries
-  \item Eventing Service: Processes data change events
-\end{itemize}
-
-\subsection{Security Features}
-Enterprise-grade security includes:
-\begin{itemize}
-  \item Role-Based Access Control (RBAC)
-  \item TLS encryption for data in transit
-  \item Encrypted administrative credentials
-  \item Auditing of database operations
-  \item LDAP integration for authentication
-  \item Field-level encryption for sensitive data
-\end{itemize}
 
 \section{Brief History}
 
@@ -122,36 +61,12 @@ The introduction of N1QL in 2015 was particularly significant, as it bridged the
 
 \section{Use Case Examples}
 
-Couchbase's feature set makes it particularly suited for specific use cases:
+Couchbase excels in several common application scenarios:
 
-\subsection{User Profile Management}
-Storing user profiles benefits from:
-\begin{itemize}
-  \item Document model for varying user attributes
-  \item Key-value access for fast profile retrieval
-  \item Expiration features for session management
-\end{itemize}
+\textbf{User Profile Management:} Document model for dynamic attributes, fast key-value access, and session expiration.
 
-\subsection{Product Catalogs}
-E-commerce catalogs leverage:
-\begin{itemize}
-  \item Flexible schema for diverse product attributes
-  \item N1QL for complex product searches
-  \item Full-text search for product discovery
-\end{itemize}
+\textbf{Product Catalogs:} Flexible schema for product attributes, N1QL for advanced queries, and full-text search.
 
-\subsection{Gaming Applications}
-Online gaming uses:
-\begin{itemize}
-  \item Low-latency key-value operations for game state
-  \item Document model for player profiles and game items
-  \item Horizontal scaling for growing player bases
-\end{itemize}
+\textbf{Gaming Applications:} Low-latency key-value operations, document model for player/game data, and horizontal scaling.
 
-\subsection{Internet of Things (IoT)}
-IoT deployments benefit from:
-\begin{itemize}
-  \item Mobile synchronization for edge devices
-  \item Time-series capabilities for sensor data
-  \item Flexible schema for diverse device data
-\end{itemize}
+\textbf{Internet of Things:} Mobile sync for edge devices, time-series support for sensor data, and schema flexibility for device diversity.

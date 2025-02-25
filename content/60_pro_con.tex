@@ -1,146 +1,63 @@
 \chapter{Advantages and Disadvantages}
 
-This chapter provides a balanced assessment of Couchbase's strengths and limitations, along with comparisons to other database technologies.
+\section{Technical Advantages}
 
-\section{Advantages of Couchbase}
-
-\subsection{Development Agility}
-
-Couchbase accelerates development through:
+\textbf{Performance Metrics:}
 \begin{itemize}
-  \item Schema-less design eliminating migration needs
-  \item JSON format aligning with modern programming languages
-  \item Reduced object-relational mapping complexity
-  \item Less normalization requirements
+  \item Sub-millisecond key-value operations (<1ms @ 99th percentile)
+  \item Memory-first architecture with configurable ejection policies
+  \item B-tree based global secondary indexes for query optimization
+  \item Write-optimized storage engine with append-only commits
+  \item 30-40% storage reduction via snappy compression
 \end{itemize}
 
-These features significantly reduce friction in agile development environments.
-
-\subsection{Performance Architecture}
-
-Couchbase optimizes for high performance through:
+\textbf{Technical Capabilities:}
 \begin{itemize}
-  \item Memory-first design with integrated caching
-  \item Ultra-fast key-value operations
-  \item Secondary indexes for complex query acceleration
-  \item Optimized storage through data compression
-  \item Multi-dimensional scaling for specialized workloads
+  \item Multi-model support: K-V, document, spatial, full-text within single platform
+  \item ANSI JOIN and NEST operations in N1QL with pushdown optimization
+  \item Cross Datacenter Replication (XDCR) with filtering and compression
+  \item SSLv3/TLS 1.2+ encryption with FIPS 140-2 compliance
+  \item SDK support for Java, .NET, Node.js, Python, Go with reactive extensions
 \end{itemize}
 
-This architecture delivers sub-millisecond response times for key-value operations, making it ideal for latency-sensitive applications.
+\section{Technical Limitations}
 
-\subsection{Unified Platform}
-
-Instead of requiring multiple databases, Couchbase combines:
+\textbf{Performance Constraints:}
 \begin{itemize}
-  \item Document database capabilities
-  \item Key-value store performance
-  \item Integrated caching
-  \item Full-text search functionality
-  \item Analytics service
+  \item Document size limit: 20MB (default)
+  \item Memory overhead: ~56 bytes metadata per document
+  \item Transaction latency: increased by 15-30\% for multi-document ACID
+  \item Query performance degrades with >10 JOINs in single statement
+  \item Minimum 4GB RAM recommended per node for production
 \end{itemize}
 
-This consolidation simplifies technology stacks and reduces operational complexity.
-
-\subsection{SQL-Like Query Language}
-
-N1QL provides benefits through:
+\textbf{Architectural Considerations:}
 \begin{itemize}
-  \item Familiar syntax for SQL developers
-  \item Support for complex queries including joins and aggregations
-  \item Native operations for JSON arrays and objects
-  \item Automatic utilization of appropriate indexes
+  \item Default consistency: eventual for queries, strong for K-V operations
+  \item CAP theorem positioning: CP for document operations, AP for cross-cluster
+  \item Minimum 3 nodes recommended for high availability
+  \item Scaling requires rebalance operations (minimal but measurable impact)
+  \item Analytics segregation required for OLAP without OLTP impact
 \end{itemize}
 
-\subsection{Mobile and Edge Computing}
+\section{Technical Comparison}
 
-Couchbase offers unique capabilities for distributed applications:
-\begin{itemize}
-  \item Couchbase Mobile for edge devices
-  \item Efficient data synchronization
-  \item Offline-first functionality
-  \item Built-in conflict resolution
-\end{itemize}
-
-\section{Disadvantages and Challenges}
-
-\subsection{Operational Complexity}
-
-Couchbase's feature-rich nature brings complexity:
-\begin{itemize}
-  \item More components than simpler NoSQL solutions
-  \item Requires careful cluster sizing and configuration
-  \item Memory management needs attention
-  \item Service balancing considerations
-\end{itemize}
-
-\subsection{ACID Trade-offs}
-
-Transaction handling differs from relational databases:
-\begin{itemize}
-  \item Default single-document ACID transactions
-  \item Multi-document transactions add overhead
-  \item Different consistency model than relational systems
-  \item Performance implications for distributed transactions
-\end{itemize}
-
-\subsection{Resource Requirements}
-
-Couchbase can be resource-intensive:
-\begin{itemize}
-  \item Higher memory footprint than some competitors
-  \item Proper sizing critical for performance
-  \item Potentially higher costs for large deployments
-  \item Multiple nodes typically required for production
-\end{itemize}
-
-\subsection{Learning Curve}
-
-Despite efforts to simplify, Couchbase presents learning challenges:
-\begin{itemize}
-  \item Multiple services to understand
-  \item New data modeling approaches for relational developers
-  \item Distributed systems concepts to master
-  \item Many configuration parameters to optimize
-\end{itemize}
-
-\section{Comparative Analysis}
-
-Here's how Couchbase compares to other popular databases:
-
-\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\begin{tabular}{|p{3.0cm}|p{3.5cm}|p{3.5cm}|p{3.5cm}|}
 \hline
-\textbf{Feature} & \textbf{Couchbase} & \textbf{MongoDB} & \textbf{Cassandra} & \textbf{Redis} \\
+\textbf{Feature} & \textbf{Couchbase} & \textbf{MongoDB} & \textbf{Cassandra} \\
 \hline
-Data Model & Document + Key-Value & Document & Wide-column & Key-Value \\
+Query Latency & 1-5ms K-V, 5-20ms N1QL & 2-10ms K-V, 10-50ms query & 1-3ms K-V, 5-15ms CQL \\
 \hline
-Query Language & N1QL (SQL-like) & MQL, Aggregation & CQL (limited) & Commands \\
+Scaling Model & Shared-nothing, auto-sharding & Replica sets with sharding & Masterless ring \\
 \hline
-Schema & Flexible & Flexible & Flexible tables & Structure-defined \\
+Consistency & Tunable (BASE to ACID) & Tunable (Read preferences) & Quorum-based \\
 \hline
-Scaling & Horizontal with auto-sharding & Horizontal with replica sets & Highly horizontal & Cluster with sharding \\
+Indexes & Memory-optimized, composite & B-tree, compound & LSM-tree, materialized views \\
 \hline
-Consistency & Tunable & Tunable & Tunable levels & Eventual in cluster \\
-\hline
-Use Cases & Web apps, mobile, IoT & Content management, catalogs & Time-series, large datasets & Caching, real-time \\
+Transactions & ACID within/across docs & ACID within/across docs & Lightweight transactions \\
 \hline
 \end{tabular}
 
-\section{When to Choose Couchbase}
+\textbf{Ideal Workloads:} High-throughput OLTP with sub-ms requirements; mixed document/K-V operations; distributed multi-model applications requiring SQL compatibility.
 
-Couchbase is ideal for:
-\begin{itemize}
-  \item Applications needing both document flexibility and high performance
-  \item Systems requiring horizontal scaling
-  \item Mobile and web applications with offline capabilities
-  \item High-throughput operational applications
-  \item Projects where teams have SQL background but need NoSQL benefits
-\end{itemize}
-
-It may be less suitable for:
-\begin{itemize}
-  \item Simple applications where a pure key-value store would suffice
-  \item Highly connected data better suited for graph databases
-  \item Applications with complex multi-table transactions
-  \item Very small deployments with limited resources
-\end{itemize}
+\textbf{Less Suitable:} Graph-centric applications (high relationship traversal); pure analytics workloads; single-server deployments with <8GB RAM.
