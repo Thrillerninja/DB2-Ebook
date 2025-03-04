@@ -1,0 +1,110 @@
+\chapter{Deployment and Installation}
+
+The Couchbase Server can be used in two different ways, depending on the deployment the user wants to achieve. 
+
+\section{Cloud deployment}
+The first way is to just use Couchbase Capella, which is a cloud-based service that provides a fully managed Couchbase Server. This is the easiest way to use Couchbase, as it requires no installation or maintenance.
+
+\subsection{How to use Couchbase Capella}
+\begin{enumerate}
+    \item First, the user needs to sign up for a Couchbase Capella account. This can be done by visiting the Couchbase Capella website and following the instructions to create an account. \cite{couchbaseCapellaSignUp}
+    \item Once the account has been created, the user can create a new Couchbase Server cluster by following the instructions on the Couchbase Capella website.
+    \item The Couchbase Server cluster should now be up and running, and the user can access the Couchbase Web Console by opening a web browser and navigating to the URL provided by Couchbase Capella.
+\end{enumerate}
+
+
+\section{Local installation}
+The second way is to install the Couchbase Server locally. It is best to use Docker for this, even though it is a more complex way to use Couchbase, as it requires the user to have Docker installed on their machine. However, this method provides more flexibility and control over the Couchbase Server.
+
+\subsection{How to install Couchbase Server (Docker)}
+\begin{enumerate}
+    \item First, the user needs to install Docker on their machine. This can be done by following the instructions on the Docker website.
+    \item Next, the user needs to pull the Couchbase Server image from the Docker Hub. This can be done by running the following command in the terminal:
+    \begin{verbatim}
+    docker pull couchbase/server
+    \end{verbatim}
+    \item Once the image has been pulled, the user can run the Couchbase Server container by running the following command in the terminal:
+    \begin{verbatim}
+    docker run -d --name couchbase -p 8091-8094:8091-8094 -p 11210:11210 couchbase/server
+    \end{verbatim}
+    \item The Couchbase Server should now be running on the user's machine. The user can access the Couchbase Web Console by opening a web browser and navigating to http://localhost:8091.
+\end{enumerate}
+
+
+
+------------------------------------------------------------------------------------
+
+
+% ChatGPT
+
+
+
+\chapter{Deployment and Installation}
+
+Couchbase Server can be deployed in two different ways, depending on the user's needs and infrastructure preferences.
+
+\section{Cloud Deployment}
+The simplest way to use Couchbase Server is through Couchbase Capella, a fully managed cloud-based service. This eliminates the need for local installation and ongoing maintenance, making it an excellent choice for users who prefer a hassle-free, scalable solution.
+
+\subsection{How to Use Couchbase Capella}
+To get started with Couchbase Capella, follow these steps:
+
+\begin{enumerate}
+  \item Sign up for a Couchbase Capella account by visiting the official Couchbase Capella website and following the registration instructions. \cite{couchbaseCapellaSignUp}
+  \item Once the account is created, set up a new Couchbase Server cluster by following the step-by-step guide provided within the Capella interface.
+  \item After the cluster is successfully deployed, access the Couchbase Web Console by opening a web browser and navigating to the URL provided by Couchbase Capella.
+\end{enumerate}
+
+\section{Local Installation}
+For users who prefer greater control over their deployment, installing Couchbase Server locally is a viable option. The recommended approach for this is using Docker, which simplifies the setup process while offering flexibility. However, this method requires Docker to be installed on the machine and some level of system configuration.
+
+\subsection{How to Install Couchbase Server Using Docker}
+To install Couchbase Server with Docker, follow these steps:
+
+\begin{enumerate}
+  \item Install Docker on your machine by following the official installation guide available on the Docker website.
+  \item Pull the Couchbase Server image from Docker Hub by running the following command in the terminal:
+  \begin{verbatim}
+  docker pull couchbase/server
+  \end{verbatim}
+  \item Run the Couchbase Server container with the following command:
+  \begin{verbatim}
+  docker run -d --name couchbase -p 8091-8094:8091-8094 -p 11210:11210 couchbase/server
+  \end{verbatim}
+  \item Once the container is running, access the Couchbase Web Console by opening a web browser and navigating to http://localhost:8091.
+\end{enumerate}
+
+\section{Choosing the Right Deployment Method}
+Selecting between Couchbase Capella and a local installation depends on various factors. Below is a comparison to help determine the best approach:
+
+\subsection{Couchbase Capella (Cloud Deployment)}
+\textbf{Advantages:}
+\begin{itemize}
+  \item Fully managed service with automated updates and backups.
+  \item High availability and scalability.
+  \item No infrastructure maintenance required.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+  \item Ongoing costs for cloud usage.
+  \item Less flexibility in configuration and customization.
+  \item Internet dependency for access.
+\end{itemize}
+
+\subsection{Local Installation (Docker)}
+\textbf{Advantages:}
+\begin{itemize}
+  \item Full control over configuration and security settings.
+  \item No cloud-related costs.
+  \item Suitable for local development and testing.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+  \item Requires manual maintenance, updates, and backups.
+  \item Limited by local machine resources.
+  \item More complex initial setup compared to Capella.
+\end{itemize}
+
+In summary, Couchbase Capella is ideal for businesses and teams looking for a fully managed, scalable solution, while a local installation using Docker is best suited for developers and users requiring complete control over their environment.
