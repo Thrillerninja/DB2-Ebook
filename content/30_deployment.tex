@@ -1,115 +1,43 @@
 \chapter{Deployment and Installation}
 
-The Couchbase Server can be used in two different ways, depending on the deployment the user wants to achieve. 
-
-\section{Cloud deployment}
-The first way is to just use Couchbase Capella, which is a cloud-based service that provides a fully managed Couchbase Server. This is the easiest way to use Couchbase, as it requires no installation or maintenance.
-
-\subsection{How to use Couchbase Capella}
-\begin{enumerate}
-    \item First, the user needs to sign up for a Couchbase Capella account. This can be done by visiting the Couchbase Capella website and following the instructions to create an account. \cite{couchbaseCapellaSignUp}
-    \item Once the account has been created, the user can create a new Couchbase Server cluster by following the instructions on the Couchbase Capella website.
-    \item The Couchbase Server cluster should now be up and running, and the user can access the Couchbase Web Console by opening a web browser and navigating to the URL provided by Couchbase Capella.
-\end{enumerate}
-
-
-\section{On-premise installation}
-The second way is to install the Couchbase Server on-premise. It is best to use Docker for this, even though it is a more complex way to use Couchbase, as it requires the user to have Docker installed on their machine. However, this method provides more flexibility and control over the Couchbase Server.
-
-\subsection{How to install Couchbase Server (Docker)}
-\begin{enumerate}
-    \item First, the user needs to install Docker on their machine. This can be done by following the instructions on the Docker website.
-    \item Next, the user needs to pull the Couchbase Server image from the Docker Hub. This can be done by running the following command in the terminal:
-    \begin{verbatim}
-    docker pull couchbase/server
-    \end{verbatim}
-    \item Once the image has been pulled, the user can run the Couchbase Server container by running the following command in the terminal:
-    \begin{verbatim}
-    docker run -d --name couchbase -p 8091-8094:8091-8094 -p 11210:11210 couchbase/server
-    \end{verbatim}
-    \item The Couchbase Server should now be running on the user's machine. The user can access the Couchbase Web Console by opening a web browser and navigating to http://localhost:8091.
-\end{enumerate}
-
-
-
-------------------------------------------------------------------------------------
-
-
-% ChatGPT
-
-
-
-\chapter{Deployment and Installation}
-
 Couchbase Server can be deployed in two different ways, depending on the user's needs and infrastructure preferences.
 
 \section{Cloud Deployment}
 The simplest way to use Couchbase Server is through Couchbase Capella, a fully managed cloud-based service. This eliminates the need for a on-premise installation and ongoing maintenance, making it an excellent choice for users who prefer a hassle-free, scalable solution.
 
-\subsection{How to Use Couchbase Capella}
+\subsection{Using Couchbase Capella}
 To get started with Couchbase Capella, follow these steps:
 
 \begin{enumerate}
   \item Sign up for a Couchbase Capella account by visiting the official Couchbase Capella website and following the registration instructions. \cite{couchbaseCapellaSignUp}
   \item Once the account is created, set up a new Couchbase Server cluster by following the step-by-step guide provided within the Capella interface.
-  \item After the cluster is successfully deployed, access the Couchbase Web Console by opening a web browser and navigating to the URL provided by Couchbase Capella.
+  \item After the cluster is successfully deployed, a sample-bucket is already added, and a connection string and credentials can be created to access the cluster.
 \end{enumerate}
+\cite{couchbaseCapellaGettingStarted}
 
 \section{On-premise Installation}
 For users who prefer greater control over their deployment, installing Couchbase Server (on-prem) is a viable option. The recommended approach for this is using Docker, which simplifies the setup process while offering flexibility. However, this method requires Docker to be installed on the machine and some level of system configuration.
 
-\subsection{How to Install Couchbase Server Using Docker}
+\subsection{Docker Installation}
 To install Couchbase Server with Docker, follow these steps:
 
 \begin{enumerate}
   \item Install Docker on your machine by following the official installation guide available on the Docker website.
-  \item Pull the Couchbase Server image from Docker Hub by running the following command in the terminal:
-  \begin{verbatim}
-  docker pull couchbase/server
-  \end{verbatim}
-  \item Run the Couchbase Server container with the following command:
-  \begin{verbatim}
-  docker run -d --name couchbase -p 8091-8094:8091-8094 -p 11210:11210 couchbase/server
-  \end{verbatim}
-  \item Once the container is running, access the Couchbase Web Console by opening a web browser and navigating to http://localhost:8091.
+  \item Pull and run the Couchbase Server container with the following command: \\
+  \lstinline|docker run -d --name db -p 8091-8097:8091-8097 -p 9123:9123 -p 11207:11207 -p 11210:11210 -p 11280:11280 -p 18091-18097:18091-18097 couchbase| 
+  \item Once the container is running, access the Couchbase Web Console by opening a web browser and navigating to \lstinline|http://localhost:8091|
+  \item Follow the on-screen instructions to set up the Couchbase Server cluster and configure the necessary settings.
 \end{enumerate}
+\cite{couchbaseDocker}
 
 \section{Choosing the Right Deployment Method}
-Selecting between Couchbase Capella and a on-premise installation depends on various factors. Below is a comparison to help determine the best approach:
+Selecting between Couchbase Capella and a on-premise installation depends on various factors. Thus it is essential to consider the advantages and disadvantages of each deployment method before making a decision.
 
-\subsection{Couchbase Capella (Cloud Deployment)}
-\textbf{Advantages:}
-\begin{itemize}
-  \item Fully managed service with automated updates and backups.
-  \item High availability and scalability.
-  \item No infrastructure maintenance required.
-\end{itemize}
+Couchbase Capella, as a cloud deployment, offers a fully managed service with automated updates and backups, ensuring high availability and scalability without the need for infrastructure maintenance. However, it comes with ongoing cloud usage costs and offers less flexibility in configuration and customization. 
 
-\textbf{Disadvantages:}
-\begin{itemize}
-  \item Ongoing costs for cloud usage.
-  \item Less flexibility in configuration and customization.
-  \item Internet dependency for access.
-\end{itemize}
+In contrast, an on-premise installation using Docker provides full control over configuration and security settings while avoiding cloud-related costs. Yet, it requires manual maintenance, updates, and backups, is limited by local machine resources, and involves a more complex initial setup compared to Capella. 
 
-\subsection{On-premise Installation (Docker)}
-\textbf{Advantages:}
-\begin{itemize}
-  \item Full control over configuration and security settings.
-  \item No cloud-related costs.
-  \item Suitable for on-premise development and testing.
-\end{itemize}
-
-\textbf{Disadvantages:}
-\begin{itemize}
-  \item Requires manual maintenance, updates, and backups.
-  \item Limited by local machine resources.
-  \item More complex initial setup compared to Capella.
-\end{itemize}
-
-In summary, Couchbase Capella is ideal for businesses and teams looking for a fully managed, scalable solution, while a on-prem installation using Docker is best suited for developers and users requiring complete control over their environment.
-
-
+Ultimately, Capella is ideal for businesses seeking a hassle-free, scalable solution, while an on-prem installation is better suited for developers who need full control over their environment.
 
 
 
@@ -118,7 +46,7 @@ In summary, Couchbase Capella is ideal for businesses and teams looking for a fu
 Couchbase provides a variety of APIs and SDKs to interact with the database, making it easy to integrate Couchbase into your applications. These APIs and SDKs are available in multiple programming languages, allowing developers to work with Couchbase using their preferred language.
 
 \section{Couchbase SDKs}
-Couchbase offers official SDKs for popular programming languages, including Java, .NET, Node.js, Python, Go, and others. These SDKs provide a high-level interface to interact with Couchbase, simplifying the development process and enabling developers to focus on building their applications.
+Couchbase offers official SDKs for popular programming languages, including Java, .NET, Node.js, Python, Go, and others. These SDKs provide a high-level interface to interact with Couchbase, simplifying the development process and enabling developers to focus on building their applications. \cite{couchbaseSDKs}
 
 \subsection{Features of Couchbase SDKs}
 \begin{itemize}
@@ -133,11 +61,12 @@ Couchbase offers official SDKs for popular programming languages, including Java
 \section{Couchbase REST API}
 In addition to the SDKs, Couchbase also provides a REST API that allows developers to interact with the database over HTTP. This API is useful for scenarios where a native SDK is not available or when integrating with other systems that support RESTful communication.
 
-\subsection{Capabilities of Couchbase REST API}
-\begin{itemize}
-  \item CRUD operations for documents.
-  \item Querying using N1QL.
-  \item User and role management.
-  \item Cluster and bucket management.
-  \item Monitoring and diagnostics.
-\end{itemize}
+
+\section{Example Code - Python}
+The Python SDK provides a high-level interface to interact with Couchbase, making it easy to perform CRUD operations, query data, and manage the cluster. To install the couchbase module run: 'pip install couchbase'
+\cite{couchbasePythonModule}
+
+Let's look at a code snippet that demonstrates basic CRUD operations:
+\lstinputlisting[language=python,caption={Python example},captionpos=t,label=scr:exanple]{resources/example-script.py}
+
+We can see that interacting with Couchbase using the couchbase-python-module is straightforward and requires minimal code to perform common database operations.
