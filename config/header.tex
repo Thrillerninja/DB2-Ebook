@@ -32,7 +32,7 @@
     top=3cm
 ]{geometry}
 
-\usepackage[onespacing]{setspace}   % Zeilenabstand
+\usepackage[singlespacing]{setspace} % Zeilenabstand
 
 % Schriftart
 \usepackage{helvet}     % Arial like
@@ -165,6 +165,12 @@
 \RedeclareSectionCommand[beforeskip=0pt,afterindent=false,afterskip=2pt]{section}
 \RedeclareSectionCommand[beforeskip=0pt,afterindent=false,afterskip=2pt]{subsection}
 \RedeclareSectionCommand[beforeskip=0pt,afterindent=false,afterskip=2pt]{subsubsection}
+\RedeclareSectionCommand[
+  beforeskip=35pt,
+  afterindent=false,
+  afterskip=0pt,
+  innerskip=0pt
+]{chapter}
 
 %% Caption Style (Bsp.: Bilderunterschrift)
 \addtokomafont{caption}{\small}
@@ -175,3 +181,6 @@
 \date{\releaseDate}
 
 \setlist[itemize]{topsep=0pt, itemsep=2pt, parsep=0pt, partopsep=0pt}
+
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}

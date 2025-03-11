@@ -6,26 +6,40 @@ Couchbase addresses three fundamental limitations of relational databases: schem
 
 \textbf{Relational limitation:} Relational databases require predefined schemas where all data must conform to a fixed structure. Schema changes typically involve ALTER TABLE operations that often cause downtime, require data migrations, and necessitate application code updates.
 
-\textbf{Couchbase solution:} Couchbase's document model eliminates rigid schemas by allowing each document to have its own structure, even within the same collection. This enables:
+
+\textbf{Other NoSQL limitations:}
 \begin{itemize}
-  \item Adding or removing fields without database migrations
-  \item Evolving applications without downtime
-  \item Supporting multiple document versions simultaneously
+  \item \textbf{MongoDB}: Requires field-level indexes specified in advance, with indexing limitations on deeply nested structures
+  \item \textbf{Cassandra}: Uses table-like structures requiring column family definitions upfront
+  \item \textbf{DynamoDB}: Limits secondary indexes and requires careful attribute planning
 \end{itemize}
 
-For example, while a simple product might contain just basic attributes (id, name, price), another can include nested structures like arrays of colors and specification objects—all without schema changes.
+\textbf{Couchbase advantage:} Couchbase's document model delivers superior flexibility through:
+\begin{itemize}
+  \item Schema-free JSON documents with unlimited nesting depth
+  \item No predefined structure requirements at collection level
+  \item Full indexing capabilities on any field or nested path
+  \item Support for heterogeneous documents within the same collection
+  \item Built-in schema validation when governance is needed
+\end{itemize}
 
 \section{Scalability Improvements}
 
 \textbf{Relational limitation:} Traditional relational databases were designed for vertical scaling (bigger servers) rather than horizontal scaling. As data grows, this approach eventually hits hardware limits. Manual sharding requires complex application logic, and joins become problematic across distributed data.
 
-\textbf{Couchbase solution:} Couchbase is architected for distributed operations from the ground up, featuring automatic sharding, built-in replication, seamless cluster expansion, and multi-dimensional scaling that allows separate scaling of query, index, and data services.
+\textbf{Couchbase advantage:} Couchbase provides a truly distributed architecture that surpasses both relational and other NoSQL solutions:
+\begin{itemize}
+  \item \textbf{Linear Performance}: Near-linear throughput increases with additional nodes (95\% efficiency vs. theoretical maximum)
+  \item \textbf{In-Memory Optimization}: Memory-first architecture with configurable RAM-to-disk ratios
+  \item \textbf{Intelligent Rebalancing}: Auto-weighted data redistribution during cluster changes
+  \item \textbf{Multi-Region}: Advanced cross-datacenter replication (XDCR) with filtering and compression
+\end{itemize}
 
 \section{Advanced Query Capabilities}
 
 \textbf{Relational limitation:} SQL struggles with hierarchical data structures common in modern applications. Complex nested structures must be split across multiple tables, requiring joins that become performance bottlenecks at scale. This creates a mismatch with object-oriented application code.
 
-\textbf{Couchbase solution:} N1QL (SQL for JSON) combines SQL familiarity with direct operations on nested JSON structures:
+\textbf{Couchbase solution:} SQL++/N1QL (SQL for JSON) combines SQL familiarity with direct operations on nested JSON structures:
 
 \begin{verbatim}
 SELECT product.name, product.specs.cpu
@@ -36,5 +50,24 @@ WHERE "black" IN product.colors;
 This query directly accesses nested fields and array elements without complex joins or subqueries.
 
 \section{Relationship to Codd's Rules}
+Couchbase strategically diverges from Codd's relational model while preserving key benefits and adding NoSQL advantages:
 
-Couchbase intentionally diverges from relational principles to address modern application needs. While relational databases store data in rigid tables (Codd's Information Rule), Couchbase uses flexible JSON documents. This design choice prioritizes adaptability and development speed over traditional relational constraints.
+\begin{tabular}{|p{3.2cm}|p{3.5cm}|p{3.5cm}|p{4cm}|}
+\hline
+\textbf{Principle} & \textbf{Relational Approach} & \textbf{MongoDB Approach} & \textbf{Couchbase Approach} \\
+\hline
+Data Structure & Fixed tables and columns & BSON documents & JSON documents with optional schemas \\
+\hline
+Query Language & SQL & Proprietary & SQL++ (N1QL) \\
+\hline
+Transactions & ACID by default & ACID with limitations & Configurable ACID with versatile consistency \\
+\hline
+Relationships & Foreign keys and constraints & Manual reference or embedding & Flexible references with JOIN support \\
+\hline
+Schema Management & Strict schema enforcement & Schema-optional & Schema-optional with validation \\
+\hline
+Distribution Model & Complex federation & Replica sets with sharding & Unified cluster with multi-dimensional scaling \\
+\hline
+\end{tabular}
+
+Couchbase fundamentally reimagines database architecture by combining the query power and familiarity of relational systems, the flexibility of document databases, the performance of key-value stores, and the scalability of distributed systems—creating a truly versatile data platform that eliminates the traditional tradeoffs between different database paradigms.
