@@ -1,28 +1,29 @@
+\newpage
 \chapter{Deployment and Installation}
 
 Couchbase Server can be deployed in two different ways, depending on the user's needs and infrastructure preferences.
 
 \section{Cloud Deployment}
-The simplest way to use Couchbase Server is through Couchbase Capella, a fully managed cloud-based service. This eliminates the need for a on-premise installation and ongoing maintenance, making it an excellent choice for users who prefer a hassle-free, scalable solution.
+The simplest way to use Couchbase Server is through Couchbase Capella, a fully managed cloud-based service. This eliminates the need for an on-premise installation and ongoing maintenance, making it an excellent choice for users who prefer a hassle-free, scalable solution.
 
 \subsection{Using Couchbase Capella}
-To get started with Couchbase Capella, follow these steps:
+To get started with Couchbase Capella, these steps can be followed:
 
 \begin{enumerate}
   \item Sign up for a Couchbase Capella account by visiting the official Couchbase Capella website and following the registration instructions. \cite{couchbaseCapellaSignUp}
-  \item Once the account is created, set up a new Couchbase Server cluster by following the step-by-step guide provided within the Capella interface.
+  \item Once the account is created, set up a new Couchbase Server cluster by following the provided step-by-step guide.
   \item After the cluster is successfully deployed, a sample-bucket is already added, and a connection string and credentials can be created to access the cluster.
 \end{enumerate}
 \cite{couchbaseCapellaGettingStarted}
 
 \section{On-premise Installation}
-For users who prefer greater control over their deployment, installing Couchbase Server (on-prem) is a viable option. The recommended approach for this is using Docker, which simplifies the setup process while offering flexibility. However, this method requires Docker to be installed on the machine and some level of system configuration.
+For users who prefer more control over their deployment, installing Couchbase Server (on-prem) is a viable option. The recommended approach for this is using Docker, which simplifies the setup process while offering flexibility.
 
 \subsection{Docker Installation}
-To install Couchbase Server with Docker, follow these steps:
+To install Couchbase Server with Docker, these steps can be followed:
 
 \begin{enumerate}
-  \item Install Docker on your machine by following the official installation guide available on the Docker website.
+  \item (If not already done:) Install Docker on your machine by following the official installation guide available on the Docker website.
   \item Pull and run the Couchbase Server container with the following command: \\
   \lstinline|docker run -d --name db -p 8091-8097:8091-8097 -p 9123:9123 -p 11207:11207 -p 11210:11210 -p 11280:11280 -p 18091-18097:18091-18097 couchbase| 
   \item Once the container is running, access the Couchbase Web Console by opening a web browser and navigating to \lstinline|http://localhost:8091|
@@ -31,7 +32,7 @@ To install Couchbase Server with Docker, follow these steps:
 \cite{couchbaseDocker}
 
 \section{Choosing the Right Deployment Method}
-Selecting between Couchbase Capella and a on-premise installation depends on various factors. Thus it is essential to consider the advantages and disadvantages of each deployment method before making a decision.
+Selecting between Couchbase Capella and an on-premise installation depends on various factors. Thus it is essential to consider the advantages and disadvantages of each deployment method before making a decision.
 
 Couchbase Capella, as a cloud deployment, offers a fully managed service with automated updates and backups, ensuring high availability and scalability without the need for infrastructure maintenance. However, it comes with ongoing cloud usage costs and offers less flexibility in configuration and customization. 
 
@@ -41,21 +42,19 @@ Ultimately, Capella is ideal for businesses seeking a hassle-free, scalable solu
 
 
 
+
+
+
+
+
+
 \chapter{APIs and SDKs}
 
 Couchbase provides a variety of APIs and SDKs to interact with the database, making it easy to integrate Couchbase into your applications. These APIs and SDKs are available in multiple programming languages, allowing developers to work with Couchbase using their preferred language.
 
 \section{Couchbase SDKs}
-Couchbase offers official SDKs for popular programming languages, including Java, .NET, Node.js, Python, Go, and others. These SDKs provide a high-level interface to interact with Couchbase, simplifying the development process and enabling developers to focus on building their applications. \cite{couchbaseSDKs}
-
-\subsection{Features of Couchbase SDKs}
-\begin{itemize}
-  \item Document-oriented API for storing and retrieving JSON documents.
-  \item Key-Value operations for fast data access.
-  \item Querying capabilities using N1QL (SQL for JSON).
-  \item Full-text search integration.
-  \item Eventing and Analytics support.
-\end{itemize}
+Couchbase offers official SDKs for popular programming languages, including Java, .NET, Node.js, Python, Go, and others. These SDKs provide a high-level interface to interact with Couchbase, simplifying the development process and enabling developers to focus on building their applications. With the SDKs developers can perform all operations supported by Couchbase.
+\cite{couchbaseSDKs}
 
 
 \section{Couchbase REST API}
@@ -63,8 +62,12 @@ In addition to the SDKs, Couchbase also provides a REST API that allows develope
 
 
 \section{Example Code - Python}
-The Python SDK provides a high-level interface to interact with Couchbase, making it easy to perform CRUD operations, query data, and manage the cluster. To install the couchbase module run: 'pip install couchbase'
+The Python SDK provides a high-level interface to interact with Couchbase, making it easy to perform CRUD operations, query data, and manage the cluster. To install the couchbase module run:
+\\
+\\
+\lstinline|pip install couchbase|
 \cite{couchbasePythonModule}
+\\
 
 Let's look at a code snippet that demonstrates basic CRUD operations:
 \lstinputlisting[language=python,caption={Python example},captionpos=t,label=scr:exanple]{resources/example-script.py}
