@@ -27,5 +27,5 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: main.pdf
-          path: main_build.pdf
+          name: main_build.pdf
+          path: main.pdf
