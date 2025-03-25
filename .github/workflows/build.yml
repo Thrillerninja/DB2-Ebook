@@ -1,12 +1,12 @@
-name: ci-build
+name: CI-Build
 
 # Controls when the workflow will run
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-  workflow_dispatch:
+    branches:
+      - main
+  # workflow_dispatch:
+
 
 jobs:
   build:
@@ -14,7 +14,9 @@ jobs:
     container: texlive/texlive
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Get code from repo
+        uses: actions/checkout@v3
+
       - name: Build LaTeX pdf-output
         run: |
           pdflatex main.tex
