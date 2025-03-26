@@ -1,7 +1,7 @@
 \chapter{Which aspects of relational DBs are improved?}
 
 Couchbase addresses three fundamental limitations of relational databases: schema rigidity, scaling challenges, and query limitations for complex data structures.
-
+(\cite[p. 16-23]{sadalage2012nosql})
 \section{Schema Flexibility}
 
 \textbf{Relational limitation:} Relational databases require predefined schemas where all data must conform to a fixed structure. Schema changes typically involve ALTER TABLE operations that often cause downtime, require data migrations, and necessitate application code updates.
@@ -25,7 +25,7 @@ Couchbase addresses three fundamental limitations of relational databases: schem
 
 \section{Scalability Improvements}
 
-\textbf{Relational limitation:} Traditional relational databases were designed for vertical scaling (bigger servers) rather than horizontal scaling. As data grows, this approach eventually hits hardware limits. Manual sharding requires complex application logic, and joins become problematic across distributed data.
+\textbf{Relational limitation:} Traditional relational databases were designed for vertical scaling (bigger servers) rather than horizontal scaling. As data grows, this approach eventually hits hardware limits. Manual sharding requires complex application logic, and joins become problematic across distributed data. (\cite[p.44-50]{sadalage2012nosql})
 
 \textbf{Couchbase advantage:} Couchbase provides a truly distributed architecture that surpasses both relational and other NoSQL solutions:
 \begin{itemize}
