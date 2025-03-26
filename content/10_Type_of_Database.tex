@@ -21,22 +21,22 @@ Couchbase distinguishes itself through several core capabilities that combine to
 
 \subsection{Data Model and Storage}
 \begin{itemize}
-  \item \textbf{JSON Document Storage}: Schema-flexible documents supporting nested attributes, arrays, and objects (up to 20MB per document)
-  \item \textbf{Key-Value Operations}: Sub-millisecond CRUD operations with direct key access, optimistic concurrency (CAS), and TTL expiration
-  \item \textbf{Memory-First Architecture}: Built-in caching layer with configurable memory quotas and background disk persistence
+  \item \textbf{JSON Document Storage}: Schema-flexible documents supporting nested attributes, arrays, and objects (up to 20MB per document) (\cite{couchabse_data})
+  \item \textbf{Key-Value Operations}: Sub-millisecond CRUD operations with direct key access, optimistic concurrency (CAS), and TTL expiration (\cite{couchbaseSubMS})
+  \item \textbf{Memory-First Architecture}: Built-in caching layer with configurable memory quotas and background disk persistence (\cite[Buckets, Memory, and Storage]{CouchbaseArchitecture2025})
 \end{itemize}
 
 \subsection{Query and Indexing}
 \begin{itemize}
-  \item \textbf{SQL++/N1QL Query Language}: SQL-like syntax for JSON with support for JOINs, nested attributes, arrays, aggregations, and subqueries
-  \item \textbf{Comprehensive Indexing}: Primary, secondary, composite, partial, and array indexes to optimize query performance
+  \item \textbf{SQL++/N1QL Query Language}: SQL-like syntax for JSON with support for JOINs, nested attributes, arrays, aggregations, and subqueries (\cite[SQL++ versus SQL]{couchabse_data})
+  \item \textbf{Comprehensive Indexing}: Primary, secondary, composite, partial, and array indexes to optimize query performance (\cite[Indexes]{couchabse_data})
 \end{itemize}
 
 \subsection{Distribution and Scalability}
 \begin{itemize}
-  \item \textbf{Distributed Architecture}: Automatic sharding, configurable replication, auto-failover, and online rebalancing
-  \item \textbf{Multi-Service Design}: Independent scaling of data, query, index, search, analytics, and eventing services
-  \item \textbf{Cross-Datacenter Replication}: Built-in XDCR for geographic distribution
+  \item \textbf{Distributed Architecture}: Automatic sharding, configurable replication, auto-failover, and online rebalancing (\cite{couchbase_services})
+  \item \textbf{Multi-Service Design}: Independent scaling of data, query, index, search, analytics, and eventing services (\cite{couchbase_services})
+  \item \textbf{Cross-Datacenter Replication}: Built-in XDCR for geographic distribution (\cite{couchabse_xdcr})
 \end{itemize}
 
 \subsection{Security and Enterprise Features}
@@ -44,6 +44,7 @@ Couchbase distinguishes itself through several core capabilities that combine to
   \item \textbf{Access Control}: Role-Based Access Control (RBAC), LDAP integration, and operation auditing
   \item \textbf{Encryption}: TLS for data in transit and field-level encryption for sensitive data
 \end{itemize}
+(\cite{couchbase_security})
 
 
 \section{Brief History}
