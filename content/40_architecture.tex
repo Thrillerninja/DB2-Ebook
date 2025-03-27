@@ -1,22 +1,29 @@
 \newpage
+
 \chapter{Couchbase Architecture}
 Couchbase runs as a cluster of multiple server nodes, with each node able to take on different roles, such as data storage, indexing, or query processing. This distributed approach ensures a balanced load and makes the system more stable, as failures of individual nodes do not cause major issues.
+
 \section{Data Storage and Distribution}
 In Couchbase, data is stored in buckets, which serve as logical containers. To improve data management, these buckets are divided into smaller units called virtual buckets (vBuckets). This helps distribute data evenly across cluster nodes. Additionally, vBuckets allow dynamic data redistribution when nodes are added or removed, improving scalability and performance.
 
 To ensure high availability and fault tolerance, Couchbase uses automatic data replication. Each vBucket has a primary copy and one or more replica copies stored on different nodes. If a node fails, a replica can automatically become the primary vBucket, keeping the system running without interruption.
-\cite{CouchbaseArchitectureOverview}
+(\cite{CouchbaseArchitectureOverview})
+
 \section{Memory-First Architecture}
 Couchbase follows a Memory-First approach, where frequently used data and indexes are stored in RAM for quick access. Write operations happen in memory first and are later saved to disk or replicated to other nodes. This results in very low latency and significantly improves performance.
+
 \section{Querying with N1QL (SQL++)}
 N1QL, also called SQL++ is a query language that combines SQL-like syntax with the flexibility of JSON documents. This allows developers to run complex queries on NoSQL data while using familiar SQL structures. Couchbase supports advanced indexing to improve query performance and provides ACID transactions for data consistency.
-\cite{CouchbaseN1QL}
+(\cite{CouchbaseN1QL})
+
 \section{Cross Data Center Replication (XDCR)}
 XDCR (Cross Data Center Replication) allows asynchronous data replication between different data centers or cloud environments. It improves global availability, supports disaster recovery, and keeps data synchronized across distributed applications. XDCR can work in one-way or two-way replication mode, giving flexibility for different needs.
 
 To manage conflicts in two-way replication, XDCR offers conflict resolution strategies, such as timestamp-based resolution, where the latest update is kept, or custom conflict resolution, where developers define rules based on business logic.
+
 \section{Specialized Services in Couchbase}
 Couchbase Server provides several specialized services that can be deployed and managed separately. These services optimize data processing, improve scalability, and increase flexibility:
+
 \begin{enumerate}
     \item Data Service: Stores data in Key-Value format for fast read and write operations.
     \item Query Service: Runs N1QL queries and optimizes them using indexes.
@@ -26,8 +33,9 @@ Couchbase Server provides several specialized services that can be deployed and 
     \item Eventing Service: Runs real-time server-side functions triggered by document changes or scheduled events.
     \item Backup Service: Provides incremental and full backups, allowing data recovery and merging of previous backups.
   \end{enumerate}
+(\cite{CouchbaseServices})
 
-\cite{CouchbaseServices}
+
 \section{Multi-Dimensional Scaling (MDS)}
 Couchbase uses Multi-Dimensional Scaling (MDS) to let each service scale independently on different nodes. Unlike traditional database systems, where every server does everything, MDS allows resources to be allocated based on specific needs.
 For example:
@@ -38,7 +46,8 @@ For example:
     \item The Data Service can scale separately to handle heavy read/write operations.
   \end{enumerate}
 This separation improves performance, increases fault tolerance, and helps businesses adjust to changing workloads.
-\cite{CouchbaseMultiDimensionalScaling}
+(\cite{CouchbaseMultiDimensionalScaling})
+
 \section{CAP-Theorem}
 Depending on the configuration Couchbase can either be considered a CP or an AP system. By default it leans more towards prioritizing high availability and performance making it a CP System. However, if it is configured to enforce stronger consistency mechnaisms, for example ACID transactions, which are tunable regarding their durability and isolation levels. 
-\cite{couchbaseCAP}
+(\cite{couchbaseCAP})
